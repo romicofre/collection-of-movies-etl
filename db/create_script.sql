@@ -9,6 +9,7 @@ create database toby;
 create schema movies_collection;
 
 -- TABLES
+-- not using yet
 create table movies_collection.app
 (
 	id int not null
