@@ -19,6 +19,7 @@ def transform(df):
     df_filter_year = df[df.Year >= 2000]
     df_filter_year.Age = pd.to_numeric((df_filter_year.Age.replace('all', '0+')).str.slice(0, -1))
     df_filter_age = df_filter_year[df_filter_year.Age >= 18]
+    df_filter_age.drop(['Unnamed'], axis=1)
     return df_filter_age
 
 
