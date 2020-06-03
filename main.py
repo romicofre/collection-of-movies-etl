@@ -1,28 +1,35 @@
-import logging as log
+import logging
+import os
 import sys
 
-import pandas as pd
+import sqlalchemy
+
+from etl import etl
+
+logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO)
+logger = logging.getLogger('__name__')
 
 
 def main(argv):
-    log.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', level=log.INFO)
-
     if not argv:
         filename = 'MoviesOnStreamingPlatforms_updated.csv'
     else:
         filename = argv[0]
+    logger.info("Starting ETL")
 
-    log.info("Extracting data from file : {}".format(filename))
-    try:
-        movies_df = pd.read_csv(filename)
-    except Exception as e:
-        log.error(e)
-        log.info("Corrected use: python main.py or python main.py [file.csv]")
+    db_user = os.environ['MYSQL_USER']
+    db_pass = os.environ['MYSQL_PASS']
+    db_host = os.environ['MYSQL_HOST']
+    db_port = os.environ['MYSQL_PORT']
+    db_name = os.environ['MYSQL_DB_NAME']
 
-    log.info(movies_df.head())
-    log.info("Shape: {}".format(movies_df.shape))
+    connection_uri = "mysql+mysqldb://{}:{}@{}:{}/{}".format(db_user, db_pass, db_host, db_port, db_name)
+    db_engine = sqlalchemy.create_engine(connection_uri)
 
-    
+    etl(filename, 'movies', db_engine)
+
+
+
 
 
 if __name__ == "__main__":
