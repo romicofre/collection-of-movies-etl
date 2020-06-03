@@ -22,7 +22,7 @@ def main(argv):
     db_port = os.environ['MYSQL_PORT']
     db_name = os.environ['MYSQL_DB_NAME']
 
-    connection_uri = "mysql+mysqldb://{}:{}@{}:{}/{}".format(db_user, db_pass, db_host, db_port, db_name)
+    connection_uri = "mysql+mysqldb://{}:{}@{}:{}/{}?charset=utf8".format(db_user, db_pass, db_host, db_port, db_name)
     db_engine = sqlalchemy.create_engine(connection_uri)
 
     clean_df = movie.etl(filename, db_engine)
