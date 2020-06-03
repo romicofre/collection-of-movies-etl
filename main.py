@@ -4,8 +4,7 @@ import sys
 
 import sqlalchemy
 
-from etl import etl
-
+from etl import movie
 logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO)
 logger = logging.getLogger('__name__')
 
@@ -26,10 +25,7 @@ def main(argv):
     connection_uri = "mysql+mysqldb://{}:{}@{}:{}/{}".format(db_user, db_pass, db_host, db_port, db_name)
     db_engine = sqlalchemy.create_engine(connection_uri)
 
-    etl(filename, 'movies', db_engine)
-
-
-
+    clean_df = movie.etl(filename, db_engine)
 
 
 if __name__ == "__main__":
