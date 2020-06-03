@@ -2,7 +2,7 @@
 
 Las siguientes son instrucciones para poder ejecutar este repositorio
 
-##Requerimientos
+## Requerimientos
 ### Necesarios
 - Python3
 - Una base de datos MySQL
@@ -12,7 +12,7 @@ Las siguientes son instrucciones para poder ejecutar este repositorio
 - Jupyter
 - virtualenv o conda
 
-##Opcional: Usando un entorno virtual con conda 
+## Opcional: Usando un entorno virtual con conda 
 Installation: https://docs.conda.io/projects/conda/en/latest/user-guide/install/
 
 Usar en la consola:
@@ -21,13 +21,22 @@ Usar en la consola:
 
 `conda activate collection-of-movies-etl`
 
-##Instalar requirements
+## Instalar requirements
 
 En la consola, si es necesario dentro del entorno virtual creado anteriormente:
 
 `pip intall -r requiremts.txt`
 
 ## Ejecutar programa
+Setear variables de la base de datos, reemplazar user, pass, host, port y db
+```
+export MYSQL_USER=user
+export MYSQL_PASS=pass
+export MYSQL_HOST=host
+export MYSQL_PORT=port
+export MYSQL_DB_NAME=db
+```
+Correr script
 `python main.py ` 
 
 ## Pruebas
