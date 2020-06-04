@@ -25,7 +25,7 @@ Usar en la consola:
 
 En la consola, si es necesario dentro del entorno virtual creado anteriormente:
 
-`pip intall -r requiremts.txt`
+`pip install -r requirements.txt`
 
 ## Ejecutar programa
 Setear variables de la base de datos, reemplazar user, pass, host, port y db
