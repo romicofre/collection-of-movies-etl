@@ -76,4 +76,16 @@ create table movies_collection.movie_genre
 );
 
 
+-- COPY FROM S3
+copy dip_de_usach.movies
+from 's3://dip-de-2024/MoviesOnStreamingPlatforms_updated.csv'
+access_key_id 'ACCESS_KEY'
+secret_access_key 'SECRET_KEY'
+csv
+IGNOREHEADER 1
+delimiter ','
+TRUNCATECOLUMNS;
 
+-- CREATE DATABASE USER
+CREATE USER admin PASSWORD 'ABC1234567890.';
+grant all on schema dip_de_usach to admin;
