@@ -25,7 +25,7 @@ def main(argv):
     connection_uri = "mysql+mysqldb://{}:{}@{}:{}/{}?charset=utf8".format(db_user, db_pass, db_host, db_port, db_name)
     db_engine = sqlalchemy.create_engine(connection_uri)
 
-    clean_df = movie.etl(filename, db_engine)
+    clean_df = movie.etl(filename, db_engine, "dip_de_usach")
 
 
 if __name__ == "__main__":

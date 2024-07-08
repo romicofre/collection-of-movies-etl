@@ -22,19 +22,19 @@ def transform(df):
     return df_filter_age
 
 
-def load_df_into_table(df, db_engine):
+def load_df_into_table(df, db_engine, schema):
     # Save with the same format
     logger.info("Attempting  insert {} values in movie_raw".format(len(df)))
-    df.to_sql('movie_raw', con=db_engine, schema='movies_collection', if_exists='append')
+    df.to_sql('movie', con=db_engine, schema=schema, if_exists='append')
     logger.info("OK")
 
     # TODO: Save in a MR db
 
 
-def etl(filename, db_engine):
+def etl(filename, db_engine, schema):
     df = extract_file_to_df(filename)
     if df.empty:
         return None
     clean_df = transform(df)
-    load_df_into_table(clean_df, db_engine)
+    load_df_into_table(clean_df, db_engine, schema)
     return clean_df
